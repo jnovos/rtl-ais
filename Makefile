@@ -1,6 +1,6 @@
 CFLAGS?=-O2 -g -Wall  
 CFLAGS+= -I./aisdecoder -I ./aisdecoder/lib -I./tcp_listener 
-LD_EXTRA_PATHS= -L /usr/lib/arm-linux-gnueabihf/ -L /usr/lib/i386-linux-gnu/ -L /usr/lib/x86_64-linux-gnu/
+LD_EXTRA_PATHS= -L /usr/lib/arm-linux-gnueabihf -L /usr/lib/i386-linux-gnu -L /usr/lib/x86_64-linux-gnu
 LDFLAGS+=-lpthread -lm $(LD_EXTRA_PATHS)
 ifeq ($(PREFIX),)
     PREFIX := /usr/local
@@ -74,7 +74,7 @@ clean:
 	rm -f $(OBJECTS) $(EXECUTABLE) $(EXECUTABLE).exe
 
 install:
-	install -d -m 755 $(DESTDIR)/$(PREFIX)/bin
-	install -m 755 $(EXECUTABLE) "$(DESTDIR)/$(PREFIX)/bin/"
+	install -d -m 755 $(PREFIX)/bin
+	install -m 755 $(EXECUTABLE) "$(PREFIX)/bin/"
 
 
