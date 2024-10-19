@@ -44,6 +44,7 @@ static int _debug = 0;
 static int _tcp_keep_ais_time = 15;
 static int _tcp_stream_forever = 0;
 static int portno;
+
 pthread_mutex_t lock=PTHREAD_MUTEX_INITIALIZER;;
 
 // Linked list vars.
