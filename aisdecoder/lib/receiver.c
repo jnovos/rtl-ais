@@ -82,7 +82,7 @@ void free_receiver(struct receiver *rx)
 #define	INC	16
 #define FILTERED_LEN 8192
 
-void receiver_run(struct receiver *rx, short *buf, int len)
+void receiver_run(struct receiver *rx, short *buf, int len,unsigned long mmsi)
 {
 	float out;
 	int curr, bit;
@@ -127,7 +127,7 @@ void receiver_run(struct receiver *rx, short *buf, int len)
 			/* nrzi decode */
 			b = !(bit ^ rx->lastbit);
 			/* feed to the decoder */
-			protodec_decode(&b, 1, rx->decoder, rx->samplenum);
+			protodec_decode(&b, 1, rx->decoder, rx->samplenum,mmsi);
 
 			rx->lastbit = bit;
 			rx->pll &= 0xffff;

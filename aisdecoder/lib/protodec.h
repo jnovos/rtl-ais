@@ -62,7 +62,7 @@ struct demod_state_t {
 
 void protodec_initialize(struct demod_state_t *d, struct serial_state_t *serial, char chanid, int add_sample_num);
 void protodec_reset(struct demod_state_t *d);
-void protodec_getdata(int bufferlengde, struct demod_state_t *d);
-void protodec_decode(char *in, int count, struct demod_state_t *d, unsigned long samplenum);
+void protodec_getdata(int bufferlengde, struct demod_state_t *d,unsigned long mmsi);
+void protodec_decode(char *in, int count, struct demod_state_t *d, unsigned long samplenum,unsigned long mmsi);
 
 #endif
