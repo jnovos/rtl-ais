@@ -31,7 +31,8 @@ struct rtl_ais_config
     /* Aisdecoder */
     int	show_levels, debug_nmea;
     char *port, *host, *filename;
-
+    //valor de mmsi a eliminar del envio 
+    unsigned long mmsi;
     int add_sample_num;
 };
 
