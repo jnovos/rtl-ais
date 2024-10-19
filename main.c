@@ -26,6 +26,10 @@ typedef void* rtlsdr_dev_t;
 #include "convenience.h"
 #include "rtl_ais.h"
 
+
+#define _GNU_SOURCE
+
+
 void usage(void)
 {
 	fprintf(stderr,
@@ -58,6 +62,7 @@ void usage(void)
 		"\t[-k keep TCP socket open and write new messages to it as they arrive\n"
 		"\t[-n log NMEA sentences to console (stderr) (default off)]\n"
 		"\t[-I add sample index to NMEA messages (default off)]\n"
+		"\t[-myMMSI  your MMSI identification number\n"
 		"\t[-L log sound levels to console (stderr) (default off)]\n\n"
 		"\t[-S seconds_for_decoder_stats (default 0=off)]\n\n"
 		"\tWhen the built-in AIS decoder is disabled the samples are sent to\n"
@@ -173,6 +178,8 @@ int main(int argc, char **argv)
 			break;
 		case 'n':
 			config.debug_nmea = 1;
+			break;
+		case 'myMMSI':
 			break;
 		case '?':
 		default:
