@@ -1,7 +1,7 @@
 `rtl-ais`, a simple AIS tuner and generic dual-frequency FM demodulator
 -----------------------------------------------------------------------
 
-rtl-ais provides the `rtl_ais` command, which decodes AIS data from Software Defined Radio (SDR) and outputs `AIVDM` / `AIVDO` sentences. Support for own mmsi and configured for openwrt
+rtl-ais provides the `rtl_ais` command, which decodes AIS data from Software Defined Radio (SDR) and outputs `AIVDM` / `AIVDO` sentences. Support for **own mmsi** and **configured for openwrt**
 
 | OS support |   |
 |------------|---|
