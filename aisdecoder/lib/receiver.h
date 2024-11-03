@@ -47,9 +47,10 @@ struct receiver {
 	int prev;
 	time_t last_levellog;
     unsigned long samplenum;
+	unsigned long mmsi;
 };
 
-extern struct receiver *init_receiver(char name, int num_ch, int ch_ofs, int add_sample_num);
+extern struct receiver *init_receiver(char name, int num_ch, int ch_ofs, int add_sample_num,unsigned long mmsi);
 extern void free_receiver(struct receiver *rx);
 
 extern void receiver_run(struct receiver *rx, short *buf, int len);

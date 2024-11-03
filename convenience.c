@@ -22,18 +22,8 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-
-#ifndef _WIN32
 #include <unistd.h>
-#else
-#include <windows.h>
-#include <fcntl.h>
-#include <io.h>
-#define _USE_MATH_DEFINES
-#endif
-
 #include <math.h>
-
 #include "rtl-sdr.h"
 
 double atofs(char *s)
@@ -109,6 +99,7 @@ double atofp(char *s)
 	return atof(s);
 }
 
+//void RTLSDR::setTuner_Gain(FLOAT32 a) of aiscatcher
 int nearest_gain(rtlsdr_dev_t *dev, int target_gain)
 {
 	int i, r, err1, err2, count, nearest;
@@ -120,14 +111,18 @@ int nearest_gain(rtlsdr_dev_t *dev, int target_gain)
 	}
 	count = rtlsdr_get_tuner_gains(dev, NULL);
 	if (count <= 0) {
+		fprintf(stderr, "RTLSDR: no gains available.\n");
 		return 0;
 	}
 	gains = malloc(sizeof(int) * count);
 	count = rtlsdr_get_tuner_gains(dev, gains);
 	nearest = gains[0];
+
 	for (i=0; i<count; i++) {
 		err1 = abs(target_gain - nearest);
-		err2 = abs(target_gain - gains[i]);
+		err2 = abs(gains[i] - target_gain );
+		//esta linea se ha metido como aiscatcher
+		//err2 = abs(target_gain - gains[i]);
 		if (err2 < err1) {
 			nearest = gains[i];
 		}

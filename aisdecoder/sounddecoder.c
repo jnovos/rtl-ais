@@ -18,9 +18,6 @@
 #include <string.h>
 #include <stdio.h>
 //#include "config.h"
-#ifdef WIN32
-	#include <fcntl.h>
-#endif
 
 #include "lib/receiver.h"
 #include "lib/hmalloc.h"
@@ -28,7 +25,6 @@
 #define MAX_FILENAME_SIZE 512
 #define ERROR_MESSAGE_LENGTH 1024
 #include "sounddecoder.h"
-
 
 char errorSoundDecoder[ERROR_MESSAGE_LENGTH];
 
@@ -45,15 +41,15 @@ static void readBuffers();
 static time_t tprev=0;
 static int time_print_stats=0;
 
-int initSoundDecoder(int buf_len,int _time_print_stats, int add_sample_num) 
+int initSoundDecoder(int buf_len,int _time_print_stats, int add_sample_num,unsigned long mmsi) 
 {
 	sound_channels=SOUND_CHANNELS_STEREO;
 	channels = sound_channels == SOUND_CHANNELS_MONO ? 1 : 2;
 	time_print_stats=_time_print_stats;
 	tprev=time(NULL); // for decoder statistics
     buffer = (short *) hmalloc(channels*sizeof(short)*buf_len);
-    rx_a = init_receiver('A', 2, 0, add_sample_num);
-    rx_b = init_receiver('B', 2, 1, add_sample_num);
+    rx_a = init_receiver('A', 2, 0, add_sample_num,mmsi);
+    rx_b = init_receiver('B', 2, 1, add_sample_num,mmsi);
     return 1;
 }
 

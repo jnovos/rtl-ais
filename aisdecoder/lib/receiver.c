@@ -47,7 +47,7 @@ static float coeffs[]={
 #define COEFFS_L 36 
 
 
-struct receiver *init_receiver(char name, int num_ch, int ch_ofs, int add_sample_num)
+struct receiver *init_receiver(char name, int num_ch, int ch_ofs, int add_sample_num,unsigned long mmsi)
 {
 	struct receiver *rx;
 
@@ -57,7 +57,7 @@ struct receiver *init_receiver(char name, int num_ch, int ch_ofs, int add_sample
 	rx->filter = filter_init(COEFFS_L, coeffs);
 
     rx->decoder = hmalloc(sizeof(struct demod_state_t));
-	protodec_initialize(rx->decoder, NULL, name, add_sample_num);
+	protodec_initialize(rx->decoder, NULL, name, add_sample_num,mmsi);
 
     rx->name = name;
 	rx->lastbit = 0;

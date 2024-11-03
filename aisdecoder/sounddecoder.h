@@ -19,14 +19,11 @@ typedef enum {
 #ifdef HAVE_PULSEAUDIO
     DRIVER_PULSE,
 #endif
-#ifdef WIN32
-    DRIVER_WINMM,
-#endif
     DRIVER_FILE
 } Sound_Driver;
 
 extern char errorSoundDecoder[];
-int initSoundDecoder(int buf_len,int _time_print_stats, int add_sample_num);
+int initSoundDecoder(int buf_len,int _time_print_stats, int add_sample_num,unsigned long mmsi);
 void runSoundDecoder(int *stop);
 void freeSoundDecoder(void);
 void run_mem_decoder(short * buf, int len,int max_buf_len);

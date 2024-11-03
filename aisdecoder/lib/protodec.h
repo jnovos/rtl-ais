@@ -33,6 +33,11 @@
 #define MAX_AIS_PACKET_TYPE 27
 #define NMEABUFFER_LEN 128
 
+#define MAX_AIS_LENGTH (128 * 8)
+
+#define MAX_NMEA_CHARS 56
+
+
 struct demod_state_t {
 	char chanid;
 	int state;
@@ -58,9 +63,10 @@ struct demod_state_t {
 	struct serial_state_t *serial;
 	
 	char *nmea;
+	unsigned long mmsi;
 };
 
-void protodec_initialize(struct demod_state_t *d, struct serial_state_t *serial, char chanid, int add_sample_num);
+void protodec_initialize(struct demod_state_t *d, struct serial_state_t *serial, char chanid, int add_sample_num,unsigned long mmsi);
 void protodec_reset(struct demod_state_t *d);
 void protodec_getdata(int bufferlengde, struct demod_state_t *d);
 void protodec_decode(char *in, int count, struct demod_state_t *d, unsigned long samplenum);

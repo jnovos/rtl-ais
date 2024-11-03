@@ -15,10 +15,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifdef __cplusplus
-extern "C" {
-#endif
 
+struct rtl_ais_context;
 struct rtl_ais_config
 {
     int gain, dev_index, dev_given, ppm_error, rtl_agc, custom_ppm;
@@ -27,22 +25,19 @@ struct rtl_ais_config
 
     int oversample, dc_filter, use_internal_aisdecoder;
     int seconds_for_decoder_stats;
-    int use_tcp_listener, tcp_keep_ais_time;
+    int use_tcp_listener, tcp_keep_ais_time, tcp_stream_forever;
     /* Aisdecoder */
     int	show_levels, debug_nmea;
-    char *port, *host, *filename;
-
+    char *port, *host,*filename;
+    //valor de mmsi a eliminar del envio 
+    unsigned long mmsi;
     int add_sample_num;
+    //if you want debugging
+    int debug
 };
-
-struct rtl_ais_context;
 
 void rtl_ais_default_config(struct rtl_ais_config *config);
 struct rtl_ais_context *rtl_ais_start(struct rtl_ais_config *config);
 int rtl_ais_isactive(struct rtl_ais_context *ctx);
 const char *rtl_ais_next_message(struct rtl_ais_context *ctx);
 void rtl_ais_cleanup(struct rtl_ais_context *ctx);
-
-#ifdef __cplusplus
-}
-#endif
