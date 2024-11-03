@@ -86,13 +86,7 @@ passing vessels.
 You'll also need to do some procedure to get the tunning error for the
 specfic dongle you have (aka ppm error), and pass that number as parameter
 of rtl-ais.
-
-
-Testing
--------
-
-TODO: something like
-https://github.com/freerange/ais-on-sdr/wiki/Testing-AISDecoder#with-an-audio-file
+Example: `` /usr/bin/rtl_ais -T -k -p [ppm-value] -M [Own-MMSi] `` Send nmea default port 10110 by TCP an eliminates own MMSi
 
 
 Known Issues
@@ -105,19 +99,18 @@ figure is different for each device, it's very important to know  this value and
 How to find the correct ppm
 
 In Debian:
+```
   sudo apt-get install libtool autoconf automake libfftw3-dev
   git clone https://github.com/steve-m/kalibrate-rtl.git
   cd kalibrate-rtl/
   ./bootstrap
   ./configure
   make
+```
 Execute:
-  kal -s GSM900 -g 48
-  Show a list with all channels.
-  Choose the best channel.
-  kal -c number-channel -g 48 -v
-  At the end of the command execution the ppm will be displayed "average absolute error : value ppm"
-
+ * **kal -s GSM900 -g 48**  Show a list with all channels.
+ * Choose the best channel.
+ * **kal -c `number-channel` -g 48 -v** At the end of the command execution the ppm will be displayed "average absolute error : value ppm"
 
   * Some instructions for get the ppm error are here:
     http://www.rtl-sdr.com/how-to-calibrate-rtl-sdr-using-kalibrate-rtl-on-linux
