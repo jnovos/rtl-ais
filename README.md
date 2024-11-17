@@ -1,7 +1,9 @@
 `rtl-ais`, a simple AIS tuner and generic dual-frequency FM demodulator
 -----------------------------------------------------------------------
 
-rtl-ais provides the `rtl_ais` command, which decodes AIS data from Software Defined Radio (SDR) and outputs `AIVDM` / `AIVDO` sentences. Support for **own mmsi** and **configured for openwrt**
+rtl-ais provides the `rtl_ais` command, which decodes AIS data from Software Defined Radio (SDR) and outputs `AIVDM` / `AIVDO` sentences. Support for **own mmsi** and **configured for openwrt** 
+
+This is a [mik3y](https://github.com/mik3y) fork, thank Tcp socket keep option -k :-)
 
 | OS support |   |
 |------------|---|
@@ -32,6 +34,7 @@ Use: rtl_ais [options] [outputfile]
         [-h host (default: 127.0.0.1)]
         [-P port (default: 10110)]
         [-T use TCP communication as tcp listener ( -h is ignored)]
+        [-k keep TCP socket open and write new messages to it as they arrive]
         [-t time to keep ais messages in sec, using tcp listener (default: 15)]
         [-n log NMEA sentences to console (stderr) (default off)]
         [-M your MMSI identification number]
@@ -49,6 +52,7 @@ Use: rtl_ais [options] [outputfile]
         rtl_ais -n
         Tune two fm stations and play one on each channel:
         rtl_ais -l233.15M  -r233.20M -A  | play -r48k -traw -es -b16 -c2 -V1 -
+        Example  mmsi + ppm + gain + Tcp + keep TCP   
 ```
 
 
@@ -86,7 +90,7 @@ passing vessels.
 You'll also need to do some procedure to get the tunning error for the
 specfic dongle you have (aka ppm error), and pass that number as parameter
 of rtl-ais.
-Example: `` /usr/bin/rtl_ais -T -k -p [ppm-value] -M [Own-MMSi] `` Send nmea default port 10110 by TCP an eliminates own MMSi
+Example: `` /usr/bin/rtl_ais -M [Own-MMSi] -p [ppm-value] -g[gain] -T -k `` Send nmea default port 10110 by TCP an eliminates own MMSi
 
 
 Known Issues
