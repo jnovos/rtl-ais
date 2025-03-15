@@ -52,7 +52,10 @@ Use: rtl_ais [options] [outputfile]
         rtl_ais -n
         Tune two fm stations and play one on each channel:
         rtl_ais -l233.15M  -r233.20M -A  | play -r48k -traw -es -b16 -c2 -V1 -
-        Example  mmsi + ppm + gain + Tcp + keep TCP   
+        Example preventing your own mmsi from being sent to the receiver
+	rtl_ais	mmsi + ppm + gain + Tcp + keep TCP
+	rtl_ais  -M [Own-MMSi] -p [ppm-value] -g[gain] -T -k 
+		
 ```
 
 
